@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CardsList from '../../components/CardsList';
+import InputForm from '../../components/InputForm';
 
-class MainPage extends React.Component {
-  hi = 'труляля';
+class MainPage extends Component {
+  inputClass = 'search_form';
 
   render() {
+    // const serchField = this.state;
     return (
       <div>
-        <h1 className="MainPage">{this.hi}</h1>
+        <InputForm className={this.inputClass} />
         <CardsList />
       </div>
     );

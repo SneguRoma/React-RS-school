@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Nav from '../Nav';
 
 interface IHeader {
   name: string;
 }
 
-class Header extends React.PureComponent<IHeader> {
+class Header extends PureComponent<IHeader> {
   render() {
     const title = this.props;
     return (
