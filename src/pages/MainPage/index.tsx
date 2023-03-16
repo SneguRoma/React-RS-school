@@ -7,7 +7,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="MainPage">{this.hi}</h1>;
+        <h1 className="MainPage">{this.hi}</h1>
         <CardsList />
       </div>
     );
