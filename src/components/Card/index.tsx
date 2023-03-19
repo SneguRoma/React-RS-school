@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './index.css';
 
 type ICard = {
   firstName: string;
@@ -9,12 +10,12 @@ type ICard = {
   image: string;
 };
 
-class Card extends React.PureComponent<ICard> {
+class Card extends Component<ICard> {
   render() {
     const user = this.props;
     return (
-      <div className="name">
-        <img src={user.image} alt="foto" />
+      <div className="card">
+        <img src={user.image} alt="foto" className="user_foto" />
         <h2 className="name_user">{`Name:  ${user.firstName}  ${user.lastName}`}</h2>
         <p>phone: {user.phone}</p>
         <p>

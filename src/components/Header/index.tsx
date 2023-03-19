@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Nav from '../Nav';
+import './index.css';
 
 interface IHeader {
   name: string;
@@ -7,10 +8,9 @@ interface IHeader {
 
 class Header extends PureComponent<IHeader> {
   render() {
-    const title = this.props;
     return (
       <div className="header">
-        <h1 className="header">{title.name}</h1>
+        <h1 className="header_logo">{this.props.name}</h1>
         <div className="header_menu">
           <Nav />
         </div>

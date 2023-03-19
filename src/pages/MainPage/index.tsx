@@ -6,7 +6,6 @@ class MainPage extends Component {
   inputClass = 'search_form';
 
   render() {
-    // const serchField = this.state;
     return (
       <div>
         <InputForm className={this.inputClass} />

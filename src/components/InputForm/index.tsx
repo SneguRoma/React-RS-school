@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEventHandler } from 'react';
+import './index.css';
 
 type InputFormType = {
   className: string;
@@ -26,12 +27,11 @@ class InputForm extends Component<InputFormType, InputFormState> {
     localStorage.setItem('searchField', search.searchField);
   }
 
-  searchChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     this.setState({ searchField: e.target.value });
   };
 
   render() {
-    const search = this.state;
     return (
       <form className="search">
         <input

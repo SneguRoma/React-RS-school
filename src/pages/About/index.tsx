@@ -1,10 +1,10 @@
 import React from 'react';
 
 class About extends React.Component {
-  hi = 'Страница о нас';
+  hi = 'This page about us';
 
   render() {
-    return <h1 className="about">{this.hi}</h1>;
+    return <h2 className="about">{this.hi}</h2>;
   }
 }
 

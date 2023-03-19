@@ -1,10 +1,10 @@
 import React from 'react';
 
 class ErrorPage extends React.Component {
-  hi = 'ошибочка вышла';
+  hi = 'ohhoho something wrong...';
 
   render() {
-    return <h1 className="ErrorPage">{this.hi}</h1>;
+    return <h2 className="ErrorPage">{this.hi}</h2>;
   }
 }
 

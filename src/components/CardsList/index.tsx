@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import USERS from '../../data';
 import Card from '../Card';
+import './index.css';
 
 export default class CardsList extends Component {
   users = USERS;
 
   render() {
     return (
-      <div>
+      <div className="cards">
         {this.users.map((user) => (
           <Card
             key={user.id}

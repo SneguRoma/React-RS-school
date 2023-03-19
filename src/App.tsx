@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
 
@@ -17,40 +17,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
-          <Header name="hui" />
-          <Routes>
-            <Route path="/" element={this.mainPage} />
-            <Route path="/about" element={this.about} />
-            <Route path="*" element={this.error} />
-          </Routes>
-        </BrowserRouter>
+        <Header name="RoboWorld" />
+        <Routes>
+          <Route path="/" element={this.mainPage} />
+          <Route path="/about" element={this.about} />
+          <Route path="*" element={this.error} />
+        </Routes>
       </div>
     );
   }
 }
 
 export default App;
-
-/* const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <MainPage />,
-      },
-      {
-        index: true,
-        path: 'humor',
-        element: <Humor />,
-      },
-      
-      
-    ],
-  },
-]);
-
-const App = () => <RouterProvider router={router} />; */

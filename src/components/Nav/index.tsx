@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './index.css';
 
 interface INav {
   main: string;
@@ -7,20 +8,43 @@ interface INav {
   error: string;
 }
 
-class Nav extends Component {
-  navi: INav = {
+type INavProps = Record<string, never>;
+type INavState = {
+  currentPage: boolean;
+};
+
+class Nav extends Component<INavProps, INavState> {
+  nav: INav = {
     main: 'Main',
     about: 'About',
-    error: 'error',
+    error: 'Error',
+  };
+  constructor(props: INavProps) {
+    super(props);
+    this.state = { currentPage: true };
+  }
+
+  changePage = () => {
+    this.setState({ currentPage: !this.state.currentPage });
   };
 
   render() {
-    const nav = this.navi;
+    console.log(window.location.pathname.slice(1));
+    const curPage = window.location.pathname.slice(1) || 'main';
+    const page = curPage === 'main' || curPage === 'about' ? curPage : 'error';
+
     return (
-      <nav>
-        <Link to="/">{nav.main}</Link>
-        <Link to="/about">{nav.about}</Link>
-        <Link to="/error">{nav.error}</Link>
+      <nav className="navigation_links">
+        <h3 className="cur_page navigation_link">{'Current page:   ' + page}</h3>
+        <Link to="/" className="navigation_link" onClick={this.changePage}>
+          {this.nav.main}
+        </Link>
+        <Link to="/about" className="navigation_link" onClick={this.changePage}>
+          {this.nav.about}
+        </Link>
+        <Link to="/error" className="navigation_link" onClick={this.changePage}>
+          {this.nav.error}
+        </Link>
       </nav>
     );
   }
