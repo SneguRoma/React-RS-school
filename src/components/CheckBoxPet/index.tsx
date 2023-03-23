@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CheckboxInput from '../UI/CheckboxInput';
 import './index.css';
 
 export type ICheck = {
@@ -29,7 +30,13 @@ const opts: ICheck[] = [
   { name: 'another', id: '3', checked: false },
 ]; */
 
-class CheckboxInput extends Component<CheckBoxProps, ICheck> {
+const opts: ICheck[] = [
+  { name: 'black', id: '1', checked: false },
+  { name: 'white', id: '2', checked: false },
+  { name: 'another', id: '3', checked: false },
+];
+
+class CheckBoxPet extends Component<CheckBoxProps, ICheck> {
   constructor(props: CheckBoxProps) {
     super(props);
     this.state = {
@@ -47,22 +54,12 @@ class CheckboxInput extends Component<CheckBoxProps, ICheck> {
   render() {
     return (
       <React.Fragment>
-        <input
-          key={'input' + this.props.id}
-          type="checkbox"
-          className={'checkbox__button'}
-          id={this.props.name}
-          name={this.props.name}
-          onChange={(event) => this.inputChange(event.target.checked, event.target.name)}
-          checked={this.state.checked}
-        />
-
-        <label key={'label' + this.props.id} htmlFor={this.props.name} className="checkbox__label">
-          {this.props.name}
-        </label>
+        {opts.map((item) => (
+          <CheckboxInput key={item.id} id={item.id} name={item.name} onChange />
+        ))}
       </React.Fragment>
     );
   }
 }
 
-export default CheckboxInput;
+export default CheckBoxPet;
