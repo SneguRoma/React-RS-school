@@ -1,3 +1,28 @@
+* {
+  margin: 0 auto;
+  padding: 0 auto;
+}
 .input {
   margin-top: 100px;
+}
+
+.form-page {
+  width: 100%;
+}
+
+.form {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  border-radius: 20px;
+  background-color: beige;
+  height: 300px;
+  width: 95%;
+}
+
+.cards-form-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

@@ -14,13 +14,13 @@ class CardOfForm extends Component<ICardOfForm> {
   render() {
     const user = this.props;
     return (
-      <div className="card">
-        <img src={user.image} alt="foto" className="user_foto" />
-        <h2 className="name_user">{`Name:  ${user.name}`}</h2>
-        <h3>Date of birth: {user.date}</h3>
-        <h3>
-          Gender: {user.gender} Colors: {user.color} Animal: {user.animal}
-        </h3>
+      <div className="card-of-form">
+        <img src={user.image} alt="foto" className="form-card_foto" />
+        <h3 className="name_user">{`Name:  ${user.name}`}</h3>
+        <h4>Date of birth: {user.date}</h4>
+        <h4>Gender: {user.gender}</h4>
+        <h4>Colors: {user.color}</h4>
+        <h4> Animal: {user.animal}</h4>
       </div>
     );
   }

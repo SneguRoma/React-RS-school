@@ -1,9 +1,15 @@
-.card {
+.card-of-form {
   background-color: beige;
   display: grid;
-  grid-template-rows: 7fr 2fr 1fr 1fr;
+  grid-template-rows: 10fr 1fr 1fr 1fr 1fr 1fr;
+  max-width: 95%;
+  border-radius: 10px;
+  height: 100%;
 }
 
-.user_foto {
-  max-width: 100%;
+.form-card_foto {
+  display: inline;
+  max-width: 90%;
+  max-height: 100%;
+  padding-top: 5%;
 }

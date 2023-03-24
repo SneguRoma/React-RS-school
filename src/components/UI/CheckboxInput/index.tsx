@@ -11,23 +11,6 @@ type CheckBoxProps = {
   id: string;
   name: string;
 };
-/* 
-type checkBox = {
-  id: string;
-  item: string;
-  value: string;
-  onChange: (e: boolean, i: string) => void;
-};
-
-type CheckBoxState = {
-  options: ICheck[];
-};
-
-const opts: ICheck[] = [
-  { name: 'black', id: '1', checked: false },
-  { name: 'white', id: '2', checked: false },
-  { name: 'another', id: '3', checked: false },
-]; */
 
 class CheckboxInput extends Component<CheckBoxProps, ICheck> {
   constructor(props: CheckBoxProps) {

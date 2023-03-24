@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react';
 import CardOfForm from '../../components/CardOfForm';
 import { ICardOfForm } from '../../components/CardOfForm';
 import Form from '../../components/Form';
+import './index.css';
 
 type IFormProps = {
   className: string;
@@ -22,7 +23,6 @@ class FormPage extends Component<IFormProps, IFormState> {
     this.setState({
       cards: [...this.state.cards, cards],
     });
-    console.log(this.formRef.current);
     this.formRef.current?.reset();
   };
 
