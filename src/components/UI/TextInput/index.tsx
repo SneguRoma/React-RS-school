@@ -15,16 +15,6 @@ class TextInput extends Component<InputFormType, InputFormState> {
     this.state = { inputField: '' };
   }
 
-  /* componentDidMount(): void {
-    this.setState({ searchField: localStorage.getItem('searchField') ?? '' });
-  }
-
-  componentWillUnmount(): void {
-    const search = this.state;
-
-    localStorage.setItem('searchField', search.searchField);
-  }*/
-
   inputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     this.setState({ inputField: e.target.value });
   };
@@ -32,7 +22,9 @@ class TextInput extends Component<InputFormType, InputFormState> {
   render() {
     return (
       <React.Fragment>
-        <label htmlFor="text-input">Name</label>
+        <label htmlFor="text-input">
+          <h4> Name: </h4>
+        </label>
         <input
           type="text"
           id="text-input"

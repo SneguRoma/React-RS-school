@@ -21,8 +21,11 @@ class DateInput extends Component<InputFormType, InputFormState> {
 
   render() {
     return (
-      <React.Fragment>
-        <label htmlFor="date-input">Name</label>
+      <div>
+        <label htmlFor="date-input">
+          {' '}
+          <h4> Date of birth:</h4>
+        </label>
         <input
           type="date"
           id="date-input"
@@ -31,7 +34,7 @@ class DateInput extends Component<InputFormType, InputFormState> {
           onChange={this.inputChange}
           className={this.props.className}
         />
-      </React.Fragment>
+      </div>
     );
   }
 }

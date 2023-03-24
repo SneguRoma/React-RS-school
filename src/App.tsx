@@ -14,7 +14,7 @@ class App extends React.Component {
   about = (<About />);
 
   error = (<ErrorPage />);
-  form = (<FormPage />);
+  form = (<FormPage className="form-page" />);
 
   render() {
     return (

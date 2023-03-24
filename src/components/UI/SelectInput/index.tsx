@@ -33,14 +33,15 @@ class SelectInput extends Component<InputFormType, InputFormState> {
   }
 
   inputChange = (e: string) => {
-    console.log(e);
     this.setState({ value: e });
   };
 
   render() {
     return (
       <React.Fragment>
-        <label htmlFor="select-input">Name</label>
+        <label htmlFor="select-input">
+          <h4> Kind of animal: </h4>
+        </label>
         <select
           value={this.state.value}
           onChange={(event) => this.inputChange(event.target.value)}

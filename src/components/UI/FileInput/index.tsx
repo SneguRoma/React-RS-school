@@ -1,38 +1,40 @@
 import React, { Component, ChangeEventHandler } from 'react';
-//import './index.css';
+import './index.css';
 
 type IInput = {
   class: string;
 };
 
 type IFileState = {
-  file: File;
+  file: string;
 };
 
 class FileInput extends Component<IInput, IFileState> {
   constructor(props: IInput) {
     super(props);
-    this.state;
+    this.state = {
+      file: '',
+    };
   }
   handleFiles: ChangeEventHandler<HTMLInputElement> = (e) => {
-    // const { files } = e.target;
-    console.log(typeof e.target);
-    const images: string[] = [];
-    //const selecteds = [...[...files]];
-    // console.log(selecteds[0]);
+    const { files } = e.target;
 
-    //selecteds.forEach((i) => images.push(URL.createObjectURL(i)));
-    console.log(images);
-    /*
-    setInput(images); */
-    //this.setState({ file: selecteds[0] });
+    const images: string[] = [];
+    let selectedFiles: File[];
+    if (files) {
+      selectedFiles = [...files];
+      selectedFiles.forEach((i) => images.push(URL.createObjectURL(i)));
+    }
+
+    this.setState({ file: images[0] });
   };
 
   render() {
-    //const user = this.props;
     return (
       <div className="file_input">
-        <label htmlFor="file_input">Image:</label>
+        <label htmlFor="file_input">
+          <h4> Image: </h4>
+        </label>
         <input
           type="file"
           accept="image/jpeg,image/png,image/gif"

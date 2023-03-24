@@ -5,12 +5,14 @@ export type IRadio = {
   id: string;
   name: string;
   value: string;
+  defaultChecked: boolean;
 };
 
 type RadioProps = {
   id: string;
   name: string;
   value: string;
+  defaultChecked: boolean;
 };
 
 class RadioInput extends Component<RadioProps, IRadio> {
@@ -22,6 +24,7 @@ class RadioInput extends Component<RadioProps, IRadio> {
       id: this.props.id,
       name: this.props.name,
       value: this.props.value,
+      defaultChecked: this.props.defaultChecked,
     };
   }
 
@@ -36,6 +39,7 @@ class RadioInput extends Component<RadioProps, IRadio> {
           name={this.props.name}
           value={this.props.value}
           ref={this.radioInput}
+          defaultChecked={this.state.defaultChecked}
         />
         <label key={'label' + this.props.id} htmlFor={this.props.name} className="checkbox__label">
           {this.props.value}
