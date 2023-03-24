@@ -1,24 +1,24 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, RefObject } from 'react';
 import FileInput from '../../components/UI/FileInput';
 import TextInput from '../../components/UI/TextInput';
 import DateInput from '../../components/UI/DateInput';
 import SelectInput from '../../components/UI/SelectInput';
 import CheckboxInput from '../../components/UI/CheckboxInput';
 import RadioInput from '../../components/UI/RadioInput';
-import CardOfForm from '../../components/CardOfForm';
 import { ICardOfForm } from '../../components/CardOfForm';
 import { OptsCheck, OptsRadio } from './constants';
 
 type IFormProps = {
   className: string;
   addCard: (cards: ICardOfForm) => void;
+  formRef: RefObject<HTMLFormElement>;
 };
 
-type IFormState = {
-  cards: boolean;
-};
+/* type IFormState = {
+ 
+}; */
 
-class Form extends Component<IFormProps, IFormState> {
+class Form extends Component<IFormProps /* , IFormState */> {
   inputClass = 'search_form';
   dateInput = createRef<DateInput>();
   fileInput = createRef<FileInput>();
@@ -30,11 +30,10 @@ class Form extends Component<IFormProps, IFormState> {
   textInput = createRef<TextInput>();
   selectInput = createRef<SelectInput>();
 
-  formInput = createRef<HTMLFormElement>();
+  //formInput = createRef<HTMLFormElement>();
 
   constructor(props: IFormProps) {
     super(props);
-    this.state = { cards: true };
   }
 
   print: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -60,17 +59,31 @@ class Form extends Component<IFormProps, IFormState> {
           : ''),
       image: this.fileInput.current?.state.file ?? '',
     });
-    this.setState({ cards: !this.state.cards });
-    console.log(this.formInput.current?.reset());
-    this.formInput.current?.reset();
+
+    //(this.formInput.current?.reset());
+    console.log(
+      this.checkName(this.textInput.current?.state.inputField ?? ''),
+      this.checkDate(this.dateInput.current?.state.inputField ?? '')
+    );
+    //this.formInput.current?.reset();
   };
+
+  checkName = (name: string) => {
+    if (name.length >= 3 && /[A-Z]/.test(name[0])) return true;
+    else return false;
+  };
+
+  checkDate = (date: string) => date.length !== 0;
 
   render() {
     return (
-      <form className={this.props.className} onSubmit={this.print} ref={this.formInput}>
+      <form className={this.props.className} onSubmit={this.print} ref={this.props.formRef}>
         <TextInput className="input" ref={this.textInput} />
+        <p className="error-msg">hui</p>
         <DateInput className="date" ref={this.dateInput} />
+        <p className="error-msg">hui</p>
         <SelectInput className="select" ref={this.selectInput} />
+        <p className="error-msg">hui</p>
         <h4>Select colors of animal:</h4>
         <CheckboxInput
           id={OptsCheck[0].id}
@@ -87,6 +100,7 @@ class Form extends Component<IFormProps, IFormState> {
           name={OptsCheck[2].name}
           ref={this.checkBoxInputAnother}
         />
+        <p className="error-msg">hui</p>
         <h4>Select gender:</h4>
         <RadioInput
           name={OptsRadio[0].name}
