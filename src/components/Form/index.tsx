@@ -1,12 +1,12 @@
 import React, { Component, createRef, RefObject } from 'react';
-import FileInput from '../../components/UI/FileInput';
-import TextInput from '../../components/UI/TextInput';
-import DateInput from '../../components/UI/DateInput';
-import SelectInput from '../../components/UI/SelectInput';
-import CheckboxInput from '../../components/UI/CheckboxInput';
-import RadioInput from '../../components/UI/RadioInput';
+import UnruledFileInput from '../UI/UnruledFileInput';
+import UnruledCheckbox from '../UI/UnruledCheckbox';
 import { ICardOfForm } from '../../components/CardOfForm';
 import { OptsCheck, OptsRadio } from './constants';
+import UnruledSelect from '../UI/UnruledSelect';
+import UnruledInput from '../UI/UnruledInput';
+import UnruledRadio from '../UI/UnruledRadio';
+import UnruledDate from '../UI/UnruledDate';
 import './index.css';
 
 type IFormProps = {
@@ -25,15 +25,15 @@ type IFormState = {
 
 class Form extends Component<IFormProps, IFormState> {
   inputClass = 'search_form';
-  dateInput = createRef<DateInput>();
-  fileInput = createRef<FileInput>();
-  radioInputBoy = createRef<RadioInput>();
-  radioInputGirl = createRef<RadioInput>();
-  checkBoxInputBlack = createRef<CheckboxInput>();
-  checkBoxInputWhite = createRef<CheckboxInput>();
-  checkBoxInputAnother = createRef<CheckboxInput>();
-  textInput = createRef<TextInput>();
-  selectInput = createRef<SelectInput>();
+  dateInput = createRef<HTMLInputElement>();
+  fileInput = createRef<HTMLInputElement>();
+  radioInputBoy = createRef<HTMLInputElement>();
+  radioInputGirl = createRef<HTMLInputElement>();
+  checkBoxInputBlack = createRef<HTMLInputElement>();
+  checkBoxInputWhite = createRef<HTMLInputElement>();
+  checkBoxInputAnother = createRef<HTMLInputElement>();
+  textInput = createRef<HTMLInputElement>();
+  selectInput = createRef<HTMLSelectElement>();
 
   constructor(props: IFormProps) {
     super(props);
@@ -49,25 +49,19 @@ class Form extends Component<IFormProps, IFormState> {
   print: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const newCard: ICardOfForm = {
-      name: this.textInput.current?.state.inputField ?? '',
-      date: this.dateInput.current?.state.inputField ?? '',
-      animal: this.selectInput.current?.state.value ?? '',
-      gender: this.radioInputGirl.current?.radioInput.current?.checked
-        ? this.radioInputGirl.current?.radioInput.current?.value
-        : 'girl',
+      name: this.textInput.current?.value ?? '',
+      date: this.dateInput.current?.value ?? '',
+      animal: this.selectInput.current?.value ?? '',
+      gender: this.radioInputGirl.current?.checked ? this.radioInputGirl.current?.value : 'boy',
       color:
-        (this.checkBoxInputBlack.current?.state.checked
-          ? this.checkBoxInputBlack.current?.state.name
-          : '') +
+        (this.checkBoxInputBlack.current?.checked ? this.checkBoxInputBlack.current?.name : '') +
         '  ' +
-        (this.checkBoxInputWhite.current?.state.checked
-          ? this.checkBoxInputWhite.current?.state.name
-          : '') +
+        (this.checkBoxInputWhite.current?.checked ? this.checkBoxInputWhite.current?.name : '') +
         '  ' +
-        (this.checkBoxInputAnother.current?.state.checked
-          ? this.checkBoxInputAnother.current?.state.name
-          : ''),
-      image: this.fileInput.current?.state.file ?? '',
+        (this.checkBoxInputAnother.current?.checked ? this.checkBoxInputAnother.current?.name : ''),
+      image: this.fileInput.current?.files
+        ? URL.createObjectURL(this.fileInput.current?.files[0])
+        : '',
     };
 
     const err: IFormState = {
@@ -83,10 +77,9 @@ class Form extends Component<IFormProps, IFormState> {
     if (Object.values(err).every((error) => error === '')) {
       this.props.addCard(newCard);
       this.setState(err);
+      this.props.formRef.current?.reset();
       alert('The card has been create');
     } else this.setState(err);
-
-    this.props.formRef.current?.reset();
   };
 
   checkName = (name: string) => name.length >= 3 && /[A-Z]/.test(name[0]);
@@ -98,55 +91,55 @@ class Form extends Component<IFormProps, IFormState> {
       <form onSubmit={this.print} ref={this.props.formRef}>
         <div className={this.props.className}>
           <div>
-            <TextInput className="input-name" ref={this.textInput} />
+            <UnruledInput className="input-name" textRef={this.textInput} />
             <p className="error-msg">{this.state.errName}</p>
           </div>
           <div>
-            <DateInput className="date" ref={this.dateInput} />
+            <UnruledDate className="date" dateRef={this.dateInput} />
             <p className="error-msg">{this.state.errDate}</p>
           </div>
           <div>
-            <SelectInput className="select" ref={this.selectInput} />
+            <UnruledSelect className="select" selectRef={this.selectInput} />
             <p className="error-msg">{this.state.errAnimal}</p>
           </div>
           <div>
             <h4>Select colors of animal:</h4>
-            <CheckboxInput
+            <UnruledCheckbox
               id={OptsCheck[0].id}
               name={OptsCheck[0].name}
-              ref={this.checkBoxInputBlack}
+              checkRef={this.checkBoxInputBlack}
             />
-            <CheckboxInput
+            <UnruledCheckbox
               id={OptsCheck[1].id}
               name={OptsCheck[1].name}
-              ref={this.checkBoxInputWhite}
+              checkRef={this.checkBoxInputWhite}
             />
-            <CheckboxInput
+            <UnruledCheckbox
               id={OptsCheck[2].id}
               name={OptsCheck[2].name}
-              ref={this.checkBoxInputAnother}
+              checkRef={this.checkBoxInputAnother}
             />
             <p className="error-msg">{this.state.errColor}</p>
           </div>
           <div>
             <h4>Select gender:</h4>
-            <RadioInput
+            <UnruledRadio
               name={OptsRadio[0].name}
               value={OptsRadio[0].value}
               id={OptsRadio[0].id}
-              ref={this.radioInputBoy}
+              radioRef={this.radioInputBoy}
               defaultChecked={OptsRadio[0].defaultChecked}
             />
-            <RadioInput
+            <UnruledRadio
               name={OptsRadio[1].name}
               value={OptsRadio[1].value}
               id={OptsRadio[1].id}
-              ref={this.radioInputGirl}
+              radioRef={this.radioInputGirl}
               defaultChecked={OptsRadio[1].defaultChecked}
             />
           </div>
           <div>
-            <FileInput class="file" ref={this.fileInput} />
+            <UnruledFileInput class="file" fileRef={this.fileInput} />
             <p className="error-msg">{this.state.errImage}</p>
           </div>
         </div>
