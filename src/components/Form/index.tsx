@@ -59,9 +59,10 @@ class Form extends Component<IFormProps, IFormState> {
         (this.checkBoxInputWhite.current?.checked ? this.checkBoxInputWhite.current?.name : '') +
         '  ' +
         (this.checkBoxInputAnother.current?.checked ? this.checkBoxInputAnother.current?.name : ''),
-      image: this.fileInput.current?.files
-        ? URL.createObjectURL(this.fileInput.current?.files[0])
-        : '',
+      image:
+        this.fileInput.current?.files && this.fileInput.current?.files[0]
+          ? URL.createObjectURL(this.fileInput.current?.files[0])
+          : '',
     };
 
     const err: IFormState = {
