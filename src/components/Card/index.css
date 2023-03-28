@@ -1,0 +1,9 @@
+.card {
+  background-color: beige;
+  display: grid;
+  grid-template-rows: 7fr 2fr 1fr 1fr;
+}
+
+.user_foto {
+  max-width: 100%;
+}
