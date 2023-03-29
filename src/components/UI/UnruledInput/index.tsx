@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import './index.css';
 
 type InputTextProps = {
@@ -6,27 +6,21 @@ type InputTextProps = {
   textRef: RefObject<HTMLInputElement>;
 };
 
-class UnruledInput extends Component<InputTextProps> {
-  constructor(props: InputTextProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <label htmlFor="text-input">
-          <h4> Name: </h4>
-        </label>
-        <input
-          type="text"
-          id="text-input"
-          placeholder="input name"
-          ref={this.props.textRef}
-          className={this.props.className}
-        />
-      </React.Fragment>
-    );
-  }
-}
+const UnruledInput = (props: InputTextProps) => {
+  return (
+    <React.Fragment>
+      <label htmlFor="text-input">
+        <h4> Name: </h4>
+      </label>
+      <input
+        type="text"
+        id="text-input"
+        placeholder="input name"
+        ref={props.textRef}
+        className={props.className}
+      />
+    </React.Fragment>
+  );
+};
 
 export default UnruledInput;

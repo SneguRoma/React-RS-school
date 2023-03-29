@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import './index.css';
 
 type ICard = {
@@ -10,20 +9,17 @@ type ICard = {
   image: string;
 };
 
-class Card extends Component<ICard> {
-  render() {
-    const user = this.props;
-    return (
-      <div className="card">
-        <img src={user.image} alt="foto" className="user_foto" />
-        <h2 className="name_user">{`Name:  ${user.firstName}  ${user.lastName}`}</h2>
-        <p>phone: {user.phone}</p>
-        <p>
-          gender: {user.gender} age:{user.age}{' '}
-        </p>
-      </div>
-    );
-  }
-}
+const Card = (props: ICard) => {
+  return (
+    <div className="card">
+      <img src={props.image} alt="foto" className="user_foto" />
+      <h2 className="name_user">{`Name:  ${props.firstName}  ${props.lastName}`}</h2>
+      <p>phone: {props.phone}</p>
+      <p>
+        gender: {props.gender} age:{props.age}{' '}
+      </p>
+    </div>
+  );
+};
 
 export default Card;

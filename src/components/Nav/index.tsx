@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import './index.css';
 
 interface INav {
@@ -8,46 +8,36 @@ interface INav {
   form: string;
 }
 
-type INavProps = Record<string, never>;
-type INavState = {
-  currentPage: boolean;
-};
-
-class Nav extends Component<INavProps, INavState> {
-  nav: INav = {
+const Nav = () => {
+  const nav: INav = {
     main: 'Main',
     about: 'About',
     form: 'Form',
   };
-  constructor(props: INavProps) {
-    super(props);
-    this.state = { currentPage: true };
-  }
 
-  changePage = () => {
-    this.setState({ currentPage: !this.state.currentPage });
+  const [currentPage, setCurrentPage] = useState(true);
+
+  const changePage = () => {
+    setCurrentPage(!currentPage);
   };
 
-  render() {
-    const curPage = window.location.pathname.slice(1) || 'main';
-    const page =
-      curPage === 'main' || curPage === 'about' || curPage === 'form' ? curPage : 'error';
+  const curPage = window.location.pathname.slice(1) || 'main';
+  const page = curPage === 'main' || curPage === 'about' || curPage === 'form' ? curPage : 'error';
 
-    return (
-      <nav className="navigation_links">
-        <h3 className="cur_page navigation_link">{'Current page:   ' + page}</h3>
-        <Link to="/" className="navigation_link" onClick={this.changePage}>
-          {this.nav.main}
-        </Link>
-        <Link to="/about" className="navigation_link" onClick={this.changePage}>
-          {this.nav.about}
-        </Link>
-        <Link to="/form" className="navigation_link" onClick={this.changePage}>
-          {this.nav.form}
-        </Link>
-      </nav>
-    );
-  }
-}
+  return (
+    <nav className="navigation_links">
+      <h3 className="cur_page navigation_link">{'Current page:   ' + page}</h3>
+      <Link to="/" className="navigation_link" onClick={changePage}>
+        {nav.main}
+      </Link>
+      <Link to="/about" className="navigation_link" onClick={changePage}>
+        {nav.about}
+      </Link>
+      <Link to="/form" className="navigation_link" onClick={changePage}>
+        {nav.form}
+      </Link>
+    </nav>
+  );
+};
 
 export default Nav;

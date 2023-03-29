@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import './index.css';
 
 type CheckBoxProps = {
@@ -7,30 +7,24 @@ type CheckBoxProps = {
   checkRef: RefObject<HTMLInputElement>;
 };
 
-class UnruledCheckbox extends Component<CheckBoxProps> {
-  constructor(props: CheckBoxProps) {
-    super(props);
-  }
+const UnruledCheckbox = (props: CheckBoxProps) => {
+  return (
+    <React.Fragment>
+      <input
+        key={'input' + props.id}
+        type="checkbox"
+        className={'checkbox__button'}
+        id={props.name}
+        name={props.name}
+        defaultChecked={false}
+        ref={props.checkRef}
+      />
 
-  render() {
-    return (
-      <React.Fragment>
-        <input
-          key={'input' + this.props.id}
-          type="checkbox"
-          className={'checkbox__button'}
-          id={this.props.name}
-          name={this.props.name}
-          defaultChecked={false}
-          ref={this.props.checkRef}
-        />
-
-        <label key={'label' + this.props.id} htmlFor={this.props.name} className="checkbox__label">
-          {this.props.name}
-        </label>
-      </React.Fragment>
-    );
-  }
-}
+      <label key={'label' + props.id} htmlFor={props.name} className="checkbox__label">
+        {props.name}
+      </label>
+    </React.Fragment>
+  );
+};
 
 export default UnruledCheckbox;
