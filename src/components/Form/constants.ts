@@ -2,7 +2,7 @@ import { ICheck } from '../../components/UI/CheckboxInput';
 import { IRadio } from '../../components/UI/RadioInput';
 
 export const OptsCheck: ICheck[] = [
-  { name: 'black', id: '1', checked: false },
+  { name: 'yes', id: '1', checked: false },
   { name: 'white', id: '2', checked: false },
   { name: 'another', id: '3', checked: false },
 ];

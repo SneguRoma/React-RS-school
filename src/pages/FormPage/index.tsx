@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, useState } from 'react';
 import CardOfForm from '../../components/CardOfForm';
 import { ICardOfForm } from '../../components/CardOfForm';
 import Form from '../../components/Form';
@@ -12,32 +12,20 @@ type IFormState = {
   cards: ICardOfForm[];
 };
 
-class FormPage extends Component<IFormProps, IFormState> {
-  formRef = createRef<HTMLFormElement>();
-  constructor(props: IFormProps) {
-    super(props);
-    this.state = { cards: [] };
-  }
+const FormPage = (props: IFormProps) => {
+  const [cards, setCards] = useState<ICardOfForm[]>([]);
+  const addCard = (card: ICardOfForm) => setCards([...cards, card]);
 
-  addCard = (cards: ICardOfForm) => {
-    this.setState({
-      cards: [...this.state.cards, cards],
-    });
-    this.formRef.current?.reset();
-  };
-
-  render() {
-    return (
-      <div className={this.props.className}>
-        <Form addCard={this.addCard} className="form" formRef={this.formRef} />
-        <div className="cards-form-list">
-          {this.state.cards.map((animal, index) => (
-            <CardOfForm {...animal} key={index} />
-          ))}
-        </div>
+  return (
+    <div className={props.className}>
+      <Form setCards={addCard} cards={cards} className="form" />
+      <div className="cards-form-list">
+        {cards.map((animal, index) => (
+          <CardOfForm {...animal} key={index} />
+        ))}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default FormPage;

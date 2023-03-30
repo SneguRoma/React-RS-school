@@ -1,10 +1,11 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type CheckBoxProps = {
   id: string;
   name: string;
-  checkRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const UnruledCheckbox = (props: CheckBoxProps) => {
@@ -15,9 +16,9 @@ const UnruledCheckbox = (props: CheckBoxProps) => {
         type="checkbox"
         className={'checkbox__button'}
         id={props.name}
-        name={props.name}
+        //name={props.name}
         defaultChecked={false}
-        ref={props.checkRef}
+        {...props.register}
       />
 
       <label key={'label' + props.id} htmlFor={props.name} className="checkbox__label">

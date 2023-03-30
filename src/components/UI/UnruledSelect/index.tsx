@@ -1,9 +1,10 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type SelectProps = {
   className: string;
-  selectRef: RefObject<HTMLSelectElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 type ISelect = {
@@ -24,7 +25,7 @@ const UnruledSelect = (props: SelectProps) => {
       <label htmlFor="select-input">
         <h4> Kind of animal: </h4>
       </label>
-      <select ref={props.selectRef} defaultValue={''} className={props.className}>
+      <select defaultValue={''} {...props.register} className={props.className}>
         <option disabled value=""></option>
         {opts.map((option: ISelect) => (
           <option key={option.id} value={option.name}>

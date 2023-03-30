@@ -1,9 +1,10 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type IInputProps = {
   class: string;
-  fileRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const UnruledFileInput = (props: IInputProps) => {
@@ -16,8 +17,7 @@ const UnruledFileInput = (props: IInputProps) => {
         type="file"
         accept="image/jpeg,image/png,image/gif"
         id="image-input"
-        name="img_file"
-        ref={props.fileRef}
+        {...props.register}
       />
     </div>
   );

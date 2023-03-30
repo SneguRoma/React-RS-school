@@ -6,7 +6,6 @@ export type ICardOfForm = {
   date: string;
   animal: string;
   gender: string;
-  color: string;
   image: string;
 };
 
@@ -19,7 +18,6 @@ class CardOfForm extends Component<ICardOfForm> {
         <h3 className="name_user">{`Name:  ${user.name}`}</h3>
         <h4>Date of birth: {user.date}</h4>
         <h4>Gender: {user.gender}</h4>
-        <h4>Colors: {user.color}</h4>
         <h4> Animal: {user.animal}</h4>
       </div>
     );

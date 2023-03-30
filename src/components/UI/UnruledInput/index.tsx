@@ -1,9 +1,10 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type InputTextProps = {
   className: string;
-  textRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const UnruledInput = (props: InputTextProps) => {
@@ -16,7 +17,7 @@ const UnruledInput = (props: InputTextProps) => {
         type="text"
         id="text-input"
         placeholder="input name"
-        ref={props.textRef}
+        {...props.register}
         className={props.className}
       />
     </React.Fragment>

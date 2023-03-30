@@ -1,9 +1,10 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type InputDateProps = {
   className: string;
-  dateRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const UnruledDate = (props: InputDateProps) => {
@@ -17,7 +18,7 @@ const UnruledDate = (props: InputDateProps) => {
         type="date"
         id="date-input"
         placeholder="input date"
-        ref={props.dateRef}
+        {...props.register}
         className={props.className}
       />
     </div>

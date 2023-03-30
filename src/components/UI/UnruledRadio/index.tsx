@@ -1,4 +1,5 @@
-import React, { RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type RadioProps = {
@@ -6,7 +7,7 @@ type RadioProps = {
   name: string;
   value: string;
   defaultChecked: boolean;
-  radioRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const UnruledRadio = (props: RadioProps) => {
@@ -17,9 +18,9 @@ const UnruledRadio = (props: RadioProps) => {
         type="radio"
         className={'radio__button'}
         id={props.name}
-        name={props.name}
+        //name={props.name}
         value={props.value}
-        ref={props.radioRef}
+        {...props.register}
         defaultChecked={props.defaultChecked}
       />
       <label key={'label' + props.id} htmlFor={props.name} className="checkbox__label">
