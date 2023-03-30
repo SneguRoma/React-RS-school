@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import './index.css';
 
 type InputDateProps = {
@@ -6,28 +6,22 @@ type InputDateProps = {
   dateRef: RefObject<HTMLInputElement>;
 };
 
-class UnruledDate extends Component<InputDateProps> {
-  constructor(props: InputDateProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <label htmlFor="date-input">
-          {' '}
-          <h4> Date of birth:</h4>
-        </label>
-        <input
-          type="date"
-          id="date-input"
-          placeholder="input date"
-          ref={this.props.dateRef}
-          className={this.props.className}
-        />
-      </div>
-    );
-  }
-}
+const UnruledDate = (props: InputDateProps) => {
+  return (
+    <div>
+      <label htmlFor="date-input">
+        {' '}
+        <h4> Date of birth:</h4>
+      </label>
+      <input
+        type="date"
+        id="date-input"
+        placeholder="input date"
+        ref={props.dateRef}
+        className={props.className}
+      />
+    </div>
+  );
+};
 
 export default UnruledDate;

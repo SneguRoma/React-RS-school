@@ -1,4 +1,4 @@
-import React, { Component, ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useState, useEffect } from 'react';
 import './index.css';
 
 type InputFormType = {
@@ -9,42 +9,35 @@ type InputFormState = {
   searchField: string;
 };
 
-class InputForm extends Component<InputFormType, InputFormState> {
-  go = 'Go';
+const InputForm = (props: InputFormType) => {
+  const go = 'Go';
 
-  constructor(props: InputFormType) {
-    super(props);
-    this.state = { searchField: localStorage.getItem('searchField') ?? '' };
-  }
+  const [state, setState] = useState<InputFormState>({
+    searchField: localStorage.getItem('searchField') ?? '',
+  });
 
-  componentDidMount(): void {
-    this.setState({ searchField: localStorage.getItem('searchField') ?? '' });
-  }
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('searchField', state.searchField);
+    };
+  });
 
-  componentWillUnmount(): void {
-    const search = this.state;
-
-    localStorage.setItem('searchField', search.searchField);
-  }
-
-  searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    this.setState({ searchField: e.target.value });
+  const searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setState({ searchField: e.target.value });
   };
 
-  render() {
-    return (
-      <form className="search">
-        <input
-          type="input"
-          placeholder="input search"
-          value={this.state.searchField}
-          onChange={this.searchChange}
-          className={this.props.className}
-        />
-        <button type="submit">{this.go}</button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="search">
+      <input
+        type="input"
+        placeholder="input search"
+        value={state.searchField}
+        onChange={searchChange}
+        className={props.className}
+      />
+      <button type="submit">{go}</button>
+    </form>
+  );
+};
 
 export default InputForm;

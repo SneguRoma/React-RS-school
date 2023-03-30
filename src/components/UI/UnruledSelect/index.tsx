@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import './index.css';
 
 type SelectProps = {
@@ -17,28 +17,23 @@ const opts: ISelect[] = [
   { name: 'penguin', id: 3 },
 ];
 
-class UnruledSelect extends Component<SelectProps> {
-  constructor(props: SelectProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <label htmlFor="select-input">
-          <h4> Kind of animal: </h4>
-        </label>
-        <select ref={this.props.selectRef} defaultValue={''} className={this.props.className}>
-          <option disabled value=""></option>
-          {opts.map((option: ISelect) => (
-            <option key={option.id} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-      </React.Fragment>
-    );
-  }
-}
+const UnruledSelect = (props: SelectProps) => {
+  1;
+  return (
+    <React.Fragment>
+      <label htmlFor="select-input">
+        <h4> Kind of animal: </h4>
+      </label>
+      <select ref={props.selectRef} defaultValue={''} className={props.className}>
+        <option disabled value=""></option>
+        {opts.map((option: ISelect) => (
+          <option key={option.id} value={option.name}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+    </React.Fragment>
+  );
+};
 
 export default UnruledSelect;

@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import './index.css';
 
 type RadioProps = {
@@ -9,30 +9,24 @@ type RadioProps = {
   radioRef: RefObject<HTMLInputElement>;
 };
 
-class UnruledRadio extends Component<RadioProps> {
-  constructor(props: RadioProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <input
-          key={'input' + this.props.id}
-          type="radio"
-          className={'radio__button'}
-          id={this.props.name}
-          name={this.props.name}
-          value={this.props.value}
-          ref={this.props.radioRef}
-          defaultChecked={this.props.defaultChecked}
-        />
-        <label key={'label' + this.props.id} htmlFor={this.props.name} className="checkbox__label">
-          {this.props.value}
-        </label>
-      </React.Fragment>
-    );
-  }
-}
+const UnruledRadio = (props: RadioProps) => {
+  return (
+    <React.Fragment>
+      <input
+        key={'input' + props.id}
+        type="radio"
+        className={'radio__button'}
+        id={props.name}
+        name={props.name}
+        value={props.value}
+        ref={props.radioRef}
+        defaultChecked={props.defaultChecked}
+      />
+      <label key={'label' + props.id} htmlFor={props.name} className="checkbox__label">
+        {props.value}
+      </label>
+    </React.Fragment>
+  );
+};
 
 export default UnruledRadio;
