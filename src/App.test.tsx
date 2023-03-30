@@ -41,4 +41,13 @@ describe('App', () => {
     expect(screen.getByRole('button')).toBeVisible();
     expect(screen.getByRole('button')).toHaveTextContent('Go');
   });
+  it('render button add card', () => {
+    render(
+      <MemoryRouter initialEntries={['/form']}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByRole('button')).toBeVisible();
+    expect(screen.getByRole('button')).toHaveTextContent('Add card');
+  });
 });

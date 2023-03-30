@@ -5,7 +5,7 @@ import './index.css';
 interface INav {
   main: string;
   about: string;
-  error: string;
+  form: string;
 }
 
 type INavProps = Record<string, never>;
@@ -17,7 +17,7 @@ class Nav extends Component<INavProps, INavState> {
   nav: INav = {
     main: 'Main',
     about: 'About',
-    error: 'Error',
+    form: 'Form',
   };
   constructor(props: INavProps) {
     super(props);
@@ -29,9 +29,9 @@ class Nav extends Component<INavProps, INavState> {
   };
 
   render() {
-    console.log(window.location.pathname.slice(1));
     const curPage = window.location.pathname.slice(1) || 'main';
-    const page = curPage === 'main' || curPage === 'about' ? curPage : 'error';
+    const page =
+      curPage === 'main' || curPage === 'about' || curPage === 'form' ? curPage : 'error';
 
     return (
       <nav className="navigation_links">
@@ -42,8 +42,8 @@ class Nav extends Component<INavProps, INavState> {
         <Link to="/about" className="navigation_link" onClick={this.changePage}>
           {this.nav.about}
         </Link>
-        <Link to="/error" className="navigation_link" onClick={this.changePage}>
-          {this.nav.error}
+        <Link to="/form" className="navigation_link" onClick={this.changePage}>
+          {this.nav.form}
         </Link>
       </nav>
     );

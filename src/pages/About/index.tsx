@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 class About extends React.Component {
   hi = 'This page about us';

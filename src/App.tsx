@@ -6,6 +6,7 @@ import MainPage from './pages/MainPage';
 import About from './pages/About';
 import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
+import FormPage from './pages/FormPage';
 
 class App extends React.Component {
   mainPage = (<MainPage />);
@@ -13,6 +14,7 @@ class App extends React.Component {
   about = (<About />);
 
   error = (<ErrorPage />);
+  form = (<FormPage className="form-page" />);
 
   render() {
     return (
@@ -21,6 +23,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={this.mainPage} />
           <Route path="/about" element={this.about} />
+          <Route path="/form" element={this.form} />
           <Route path="*" element={this.error} />
         </Routes>
       </div>
