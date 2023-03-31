@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import MainPage from '.';
+import MainPage from './pages/MainPage';
 
 describe('Header', () => {
   it('render logo text', () => {
