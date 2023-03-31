@@ -1,34 +1,28 @@
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
 import './App.css';
-
 import MainPage from './pages/MainPage';
 import About from './pages/About';
 import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 import FormPage from './pages/FormPage';
 
-class App extends React.Component {
-  mainPage = (<MainPage />);
+const App = () => {
+  const mainPage = <MainPage />;
+  const about = <About />;
+  const error = <ErrorPage />;
+  const form = <FormPage className="form-page" />;
 
-  about = (<About />);
-
-  error = (<ErrorPage />);
-  form = (<FormPage className="form-page" />);
-
-  render() {
-    return (
-      <div>
-        <Header name="RoboWorld" />
-        <Routes>
-          <Route path="/" element={this.mainPage} />
-          <Route path="/about" element={this.about} />
-          <Route path="/form" element={this.form} />
-          <Route path="*" element={this.error} />
-        </Routes>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Header name="RoboWorld" />
+      <Routes>
+        <Route path="/" element={mainPage} />
+        <Route path="/about" element={about} />
+        <Route path="/form" element={form} />
+        <Route path="*" element={error} />
+      </Routes>
+    </div>
+  );
+};
 
 export default App;

@@ -1,4 +1,3 @@
-import React from 'react';
 import UnruledFileInput from '../UI/UnruledFileInput';
 import UnruledCheckbox from '../UI/UnruledCheckbox';
 import { ICardOfForm } from '../../components/CardOfForm';
@@ -12,8 +11,7 @@ import './index.css';
 
 type IFormProps = {
   className: string;
-  setCards: React.Dispatch<React.SetStateAction<ICardOfForm>>;
-  cards: ICardOfForm[];
+  setCards: (card: ICardOfForm) => void;
 };
 
 const Form = (props: IFormProps) => {
@@ -21,6 +19,7 @@ const Form = (props: IFormProps) => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const print: SubmitHandler<FieldValues> = (e) => {
@@ -32,8 +31,9 @@ const Form = (props: IFormProps) => {
       image: e.file && e.file[0] ? URL.createObjectURL(e.file[0]) : '',
     };
 
-    console.log(newCard);
     props.setCards({ ...newCard });
+    reset();
+    alert('The form has been created');
   };
 
   return (

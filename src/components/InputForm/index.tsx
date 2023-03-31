@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState, useEffect } from 'react';
+import { ChangeEventHandler, useState, useEffect } from 'react';
 import './index.css';
 
 type InputFormType = {

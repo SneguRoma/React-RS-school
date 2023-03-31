@@ -1,11 +1,7 @@
-import React from 'react';
+const ErrorPage = () => {
+  const hi = 'ohhoho something wrong...';
 
-class ErrorPage extends React.Component {
-  hi = 'ohhoho something wrong...';
-
-  render() {
-    return <h2 className="about">{this.hi}</h2>;
-  }
-}
+  return <h2 className="about">{hi}</h2>;
+};
 
 export default ErrorPage;
