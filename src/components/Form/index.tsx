@@ -20,7 +20,9 @@ const Form = (props: IFormProps) => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm({
+    reValidateMode: 'onSubmit',
+  });
 
   const print: SubmitHandler<FieldValues> = (e) => {
     const newCard: ICardOfForm = {
@@ -32,8 +34,8 @@ const Form = (props: IFormProps) => {
     };
 
     props.setCards({ ...newCard });
-    reset();
     alert('The form has been created');
+    reset();
   };
 
   return (
