@@ -17,6 +17,7 @@ const InputForm = (props: InputFormType) => {
   });
 
   useEffect(() => {
+    localStorage.setItem('searchField', '');
     return () => {
       localStorage.setItem('searchField', state.searchField);
     };
