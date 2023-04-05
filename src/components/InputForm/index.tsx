@@ -5,7 +5,7 @@ type InputFormType = {
   className: string;
 };
 
-let search = '';
+let search = localStorage.getItem('searchField') ?? '';
 
 const InputForm = (props: InputFormType) => {
   const go = 'Go';
