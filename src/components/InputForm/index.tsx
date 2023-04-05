@@ -1,38 +1,31 @@
-import { ChangeEventHandler, useState, useEffect } from 'react';
+import { ChangeEventHandler, useEffect } from 'react';
 import './index.css';
 
 type InputFormType = {
   className: string;
 };
 
-type InputFormState = {
-  searchField: string;
-};
+let search = '';
 
 const InputForm = (props: InputFormType) => {
   const go = 'Go';
 
-  const [state, setState] = useState<InputFormState>({
-    searchField: localStorage.getItem('searchField') ?? '',
-  });
-
   useEffect(() => {
-    localStorage.setItem('searchField', '');
     return () => {
-      localStorage.setItem('searchField', state.searchField);
+      localStorage.setItem('searchField', search);
     };
   });
 
   const searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setState({ searchField: e.target.value });
+    search = e.target.value;
   };
 
   return (
     <form className="search">
       <input
         type="input"
+        defaultValue={search}
         placeholder="input search"
-        value={state.searchField}
         onChange={searchChange}
         className={props.className}
       />
