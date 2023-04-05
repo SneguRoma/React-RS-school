@@ -1,18 +1,37 @@
-import USERS from '../../data';
-import Card from '../Card';
+import { useState, useEffect } from 'react';
+import { searchUsers, ICardFetch } from '../../api';
+import FetchCard from '../FetchCard';
 import './index.css';
 
-const CardsList = () => {
+type ICardList = {
+  searchField: string;
+};
+
+const CardsList = (props: ICardList) => {
+  const [cards, setcards] = useState<ICardFetch[]>([]);
+  const [err, setErr] = useState('');
+
+  console.log('CardsListsearchField', props.searchField);
+
+  useEffect(() => {
+    searchUsers(props.searchField)
+      .then(setcards)
+      .catch((err) => setErr(err.message));
+  }, [props.searchField]);
+
   return (
     <div className="cards">
-      {USERS.map((user) => (
-        <Card
+      {cards.length === 0 ? <div>...Loading</div> : err ?? ''}
+      {cards.map((user) => (
+        <FetchCard
+          id={user.id}
           key={user.id}
           firstName={user.firstName}
           lastName={user.lastName}
-          age={user.age}
-          phone={user.phone}
+          eyeColor={user.eyeColor}
+          email={user.email}
           gender={user.gender}
+          username={user.username}
           image={user.image}
         />
       ))}
