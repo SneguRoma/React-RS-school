@@ -1,18 +1,21 @@
 import './index.css';
 import { ICardFetch } from '../../api';
 
-/* type ICard = {
+type ICardFetchCard = {
+  id: number;
   firstName: string;
   lastName: string;
-  age: number;
+  eyeColor: string;
   gender: string;
-  phone: string;
+  username: string;
+  email: string;
   image: string;
-}; */
+  onClick: React.MouseEventHandler<HTMLDivElement>;
+};
 
-const FetchCard = (props: ICardFetch) => {
+const FetchCard = (props: ICardFetchCard) => {
   return (
-    <div className="card">
+    <div className="card" onClick={props.onClick}>
       <img src={props.image} alt="foto" className="user_foto" />
       <h2 className="name_user">{`Name:  ${props.firstName}  ${props.lastName}`}</h2>
       <p>nicName: {props.username}</p>

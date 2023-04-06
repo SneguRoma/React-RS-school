@@ -1,23 +1,26 @@
 import './index.css';
+import { ICardFetch } from '../../api';
+import { ModuleGraph } from 'vite';
 
 type ICard = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  gender: string;
-  phone: string;
-  image: string;
+  activeCard: boolean;
+  setActiveCard: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Card = (props: ICard) => {
   return (
-    <div className="card">
-      <img src={props.image} alt="foto" className="user_foto" />
-      <h2 className="name_user">{`Name:  ${props.firstName}  ${props.lastName}`}</h2>
-      <p>phone: {props.phone}</p>
-      <p>
-        gender: {props.gender} age:{props.age}{' '}
-      </p>
+    <div
+      className={props.activeCard ? 'modal-card active' : 'modal-card'}
+      onClick={() => props.setActiveCard(false)}
+    >
+      <div className="modal-card-content" onClick={(e) => e.stopPropagation()}>
+        <img src={props.image} alt="foto" className="user_foto" />
+        <h2 className="name_user">{`Name:  ${props.firstName}  ${props.lastName}`}</h2>
+        <p>nicName: {props.username}</p>
+        <p>
+          gender: {props.gender} eye: {props.eyeColor}{' '}
+        </p>
+      </div>
     </div>
   );
 };

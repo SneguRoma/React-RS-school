@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { searchUsers, ICardFetch } from '../../api';
 import FetchCard from '../FetchCard';
+import Card from '../Card';
 import './index.css';
 
 type ICardList = {
@@ -10,8 +11,7 @@ type ICardList = {
 const CardsList = (props: ICardList) => {
   const [cards, setcards] = useState<ICardFetch[]>([]);
   const [err, setErr] = useState('');
-
-  console.log('CardsListsearchField', props.searchField);
+  const [activeCard, setActiveCard] = useState(true);
 
   useEffect(() => {
     searchUsers(props.searchField)
@@ -37,8 +37,10 @@ const CardsList = (props: ICardList) => {
           gender={user.gender}
           username={user.username}
           image={user.image}
+          onClick={() => setActiveCard(true)}
         />
       ))}
+      <Card activeCard={activeCard} setActiveCard={setActiveCard} />
     </div>
   );
 };
