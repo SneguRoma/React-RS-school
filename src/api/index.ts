@@ -32,7 +32,7 @@ export const searchUsers = async (searchField: string) => {
 };
 
 export const getUsers = async () => {
-  const response = await fetch('https://dummyjson.com/users?limit=20');
+  const response = await fetch('https://dummyjson.com/users?limit=40');
 
   if (!response.ok)
     throw new Error(`Error ${response.status} ${response.statusText || 'ohohoho something wrong'}`);

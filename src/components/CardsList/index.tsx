@@ -15,13 +15,17 @@ const CardsList = (props: ICardList) => {
 
   useEffect(() => {
     searchUsers(props.searchField)
-      .then(setcards)
+      .then((cards) => {
+        setcards(cards);
+        if (cards.length === 0) setErr('ohohoho Nothing found ');
+        else setErr('');
+      })
       .catch((err) => setErr(err.message));
   }, [props.searchField]);
 
   return (
     <div className="cards">
-      {cards.length === 0 ? <div>...Loading</div> : err ?? ''}
+      {cards.length === 0 && !err ? <div>...Loading</div> : err ?? ''}
       {cards.map((user) => (
         <FetchCard
           id={user.id}

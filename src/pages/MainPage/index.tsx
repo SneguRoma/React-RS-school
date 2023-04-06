@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const MainPage = () => {
   const inputClass = 'search_form';
-  const [searchField, setSearch] = useState('');
+  const [searchField, setSearch] = useState(localStorage.getItem('searchField') ?? '');
   console.log('MainPagesearchField', searchField);
 
   return (
