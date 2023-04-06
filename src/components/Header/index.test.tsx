@@ -14,4 +14,12 @@ describe('Header', () => {
 
     expect(screen.getByText('RoboWorld')).toBeInTheDocument();
   });
+  it('links on page', () => {
+    render(
+      <MemoryRouter initialEntries={['/about']}>
+        <Header name="RoboWorld" />
+      </MemoryRouter>
+    );
+    expect(screen.getAllByRole('link')).toHaveLength(3);
+  });
 });

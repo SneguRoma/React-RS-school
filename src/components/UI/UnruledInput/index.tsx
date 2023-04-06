@@ -1,32 +1,27 @@
-import React, { Component, RefObject } from 'react';
+import React from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import './index.css';
 
 type InputTextProps = {
   className: string;
-  textRef: RefObject<HTMLInputElement>;
+  register: ReturnType<UseFormRegister<FieldValues>>;
 };
 
-class UnruledInput extends Component<InputTextProps> {
-  constructor(props: InputTextProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <label htmlFor="text-input">
-          <h4> Name: </h4>
-        </label>
-        <input
-          type="text"
-          id="text-input"
-          placeholder="input name"
-          ref={this.props.textRef}
-          className={this.props.className}
-        />
-      </React.Fragment>
-    );
-  }
-}
+const UnruledInput = (props: InputTextProps) => {
+  return (
+    <React.Fragment>
+      <label htmlFor="text-input">
+        <h4> Name: </h4>
+      </label>
+      <input
+        type="text"
+        id="text-input"
+        placeholder="input name"
+        {...props.register}
+        className={props.className}
+      />
+    </React.Fragment>
+  );
+};
 
 export default UnruledInput;

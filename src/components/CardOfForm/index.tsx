@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import './index.css';
 
 export type ICardOfForm = {
@@ -6,24 +5,19 @@ export type ICardOfForm = {
   date: string;
   animal: string;
   gender: string;
-  color: string;
   image: string;
 };
 
-class CardOfForm extends Component<ICardOfForm> {
-  render() {
-    const user = this.props;
-    return (
-      <div className="card-of-form">
-        <img src={user.image} alt="foto" className="form-card_foto" />
-        <h3 className="name_user">{`Name:  ${user.name}`}</h3>
-        <h4>Date of birth: {user.date}</h4>
-        <h4>Gender: {user.gender}</h4>
-        <h4>Colors: {user.color}</h4>
-        <h4> Animal: {user.animal}</h4>
-      </div>
-    );
-  }
-}
+const CardOfForm = (props: ICardOfForm) => {
+  return (
+    <div className="card-of-form">
+      <img src={props.image} alt="foto" className="form-card_foto" />
+      <h3 className="name_user">{`Name:  ${props.name}`}</h3>
+      <h4>Date of birth: {props.date}</h4>
+      <h4>Gender: {props.gender}</h4>
+      <h4> Animal: {props.animal}</h4>
+    </div>
+  );
+};
 
 export default CardOfForm;
