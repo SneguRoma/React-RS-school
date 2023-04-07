@@ -1,5 +1,5 @@
 .modal-card {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -16,9 +16,19 @@
 }
 
 .modal-card-content {
+  position: relative;
   padding: 20px;
   border-radius: 5px;
   background-color: beige;
-  height: 200px;
-  width: 200px;
+}
+
+.loading {
+  color: rgb(148, 235, 35);
+}
+
+.close_icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }

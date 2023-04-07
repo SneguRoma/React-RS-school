@@ -4,6 +4,8 @@ import './index.css';
 type InputFormType = {
   className: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  click: boolean;
+  setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 let search = localStorage.getItem('searchField') ?? '';
@@ -25,6 +27,7 @@ const InputForm = (props: InputFormType) => {
     e.preventDefault();
     localStorage.setItem('searchField', search);
     props.setSearch(search);
+    props.setClick(!props.click);
   };
 
   return (
@@ -37,7 +40,7 @@ const InputForm = (props: InputFormType) => {
         name="searchh"
         className={props.className}
       />
-      <button /* type="submit" */>{go}</button>
+      <button type="submit">{go}</button>
     </form>
   );
 };

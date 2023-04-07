@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
-import { searchUsers, ICardFetch } from '../../api';
+import { searchUsers, getUserById, ICardFetch } from '../../api';
 import FetchCard from '../FetchCard';
 import Card from '../Card';
 import './index.css';
 
 type ICardList = {
   searchField: string;
+  click: boolean;
 };
 
 const CardsList = (props: ICardList) => {
   const [cards, setcards] = useState<ICardFetch[]>([]);
   const [err, setErr] = useState('');
-  const [activeCard, setActiveCard] = useState(true);
+  const [activeCard, setActiveCard] = useState(false);
+  const [idCard, setIdCard] = useState<ICardFetch | null>(null);
 
   useEffect(() => {
+    setcards([]);
+    setErr('');
     searchUsers(props.searchField)
       .then((cards) => {
         setcards(cards);
@@ -21,26 +25,34 @@ const CardsList = (props: ICardList) => {
         else setErr('');
       })
       .catch((err) => setErr(err.message));
-  }, [props.searchField]);
+  }, [props.searchField, props.click]);
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    getUserById(e.currentTarget.id).then((card) => setIdCard(card));
+    setActiveCard(true);
+  };
 
   return (
     <div className="cards">
-      {cards.length === 0 && !err ? <div>...Loading</div> : err ?? ''}
+      {cards.length === 0 && !err ? <h2>...Loading</h2> : err ?? ''}
       {cards.map((user) => (
         <FetchCard
           id={user.id}
           key={user.id}
           firstName={user.firstName}
           lastName={user.lastName}
-          eyeColor={user.eyeColor}
-          email={user.email}
-          gender={user.gender}
           username={user.username}
           image={user.image}
-          onClick={() => setActiveCard(true)}
+          onClick={handleClick}
         />
       ))}
-      <Card activeCard={activeCard} setActiveCard={setActiveCard} />
+      {
+        <Card
+          activeCard={activeCard}
+          setActiveCard={setActiveCard}
+          user={idCard}
+          setIdCard={setIdCard}
+        />
+      }
     </div>
   );
 };

@@ -5,12 +5,12 @@ import { useState } from 'react';
 const MainPage = () => {
   const inputClass = 'search_form';
   const [searchField, setSearch] = useState(localStorage.getItem('searchField') ?? '');
-  console.log('MainPagesearchField', searchField);
+  const [click, setClick] = useState(true);
 
   return (
     <div>
-      <InputForm className={inputClass} setSearch={setSearch} />
-      <CardsList searchField={searchField} />
+      <InputForm className={inputClass} setSearch={setSearch} click={click} setClick={setClick} />
+      <CardsList searchField={searchField} click={click} />
     </div>
   );
 };
