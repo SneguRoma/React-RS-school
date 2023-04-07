@@ -37,7 +37,6 @@ const InputForm = (props: InputFormType) => {
         defaultValue={search}
         placeholder="input search"
         onChange={searchChange}
-        name="searchh"
         className={props.className}
       />
       <button type="submit">{go}</button>
