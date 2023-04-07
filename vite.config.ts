@@ -16,6 +16,15 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text'],
       all: true,
+      exclude: [
+        '**/interfaces.ts',
+        '**/vite.config.ts',
+        '**/.eslintrc.cjs',
+        '**/.prettierrc.cjs',
+        '**/index-cc771fc8.js',
+        '**/vite-env.d.ts',
+        '**/constants.ts',
+      ],
     },
   },
 });
