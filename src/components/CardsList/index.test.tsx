@@ -1,18 +1,20 @@
-import { describe, it } from 'vitest';
+import { describe, it, Mock, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { testUsers } from './dataTestJson';
 
 import CardsList from '.';
 
 describe('CardsList', () => {
-  it('render name of cards text', () => {
-    render(<CardsList />);
-    expect(screen.getByText('Name: Terry Medhurst')).toBeInTheDocument();
-    expect(screen.getByText('phone: +63 791 675 8914')).toBeInTheDocument();
-    expect(screen.getByText('gender: male age:50')).toBeInTheDocument();
+  beforeEach(() => {
+    global.fetch = vi.fn();
   });
-  it('render name of card text', () => {
-    render(<CardsList />);
-    expect(screen.getAllByRole('img')).toHaveLength(20);
-    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(20);
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+  it('loader before fetch', () => {
+    (fetch as Mock).mockResolvedValue({ json: () => Promise.resolve(testUsers) });
+    render(<CardsList searchField={''} click={true} />);
+    const loader = screen.getByText('...Loading');
+    expect(loader).toBeInTheDocument();
   });
 });

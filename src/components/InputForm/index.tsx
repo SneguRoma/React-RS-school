@@ -3,6 +3,9 @@ import './index.css';
 
 type InputFormType = {
   className: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  click: boolean;
+  setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 let search = localStorage.getItem('searchField') ?? '';
@@ -14,14 +17,21 @@ const InputForm = (props: InputFormType) => {
     return () => {
       localStorage.setItem('searchField', search);
     };
-  });
+  }, []);
 
   const searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     search = e.target.value;
   };
 
+  const searchSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    localStorage.setItem('searchField', search);
+    props.setSearch(search);
+    props.setClick(!props.click);
+  };
+
   return (
-    <form className="search">
+    <form className="search" onSubmit={searchSubmit}>
       <input
         type="input"
         defaultValue={search}
