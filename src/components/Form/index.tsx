@@ -1,20 +1,22 @@
 import UnruledFileInput from '../UI/UnruledFileInput';
 import UnruledCheckbox from '../UI/UnruledCheckbox';
 import { ICardOfForm } from '../../components/CardOfForm';
-import { OptsCheck, OptsRadio } from './constants';
+import { OptsRadio } from './constants';
 import UnruledSelect from '../UI/UnruledSelect';
 import UnruledInput from '../UI/UnruledInput';
 import UnruledRadio from '../UI/UnruledRadio';
 import UnruledDate from '../UI/UnruledDate';
+import { useAppDispatch } from '../../store/hooks';
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 import './index.css';
+import { addCard } from '../../store/formSlice';
 
 type IFormProps = {
   className: string;
-  setCards: (card: ICardOfForm) => void;
 };
 
 const Form = (props: IFormProps) => {
+  const dispatch = useAppDispatch();
   const {
     register,
     formState: { errors },
@@ -32,8 +34,7 @@ const Form = (props: IFormProps) => {
       gender: e.radio,
       image: e.file && e.file[0] ? URL.createObjectURL(e.file[0]) : '',
     };
-
-    props.setCards({ ...newCard });
+    dispatch(addCard({ ...newCard }));
     alert('The form has been created');
     reset();
   };
@@ -81,8 +82,8 @@ const Form = (props: IFormProps) => {
         <div>
           <h4>Do you like animals:</h4>
           <UnruledCheckbox
-            id={OptsCheck[0].id}
-            name={OptsCheck[0].name}
+            id={'1'}
+            name={'yes'}
             register={{
               ...register('check', {
                 required: 'please check',

@@ -6,12 +6,10 @@ import { setSearch } from '../../store/searchSlice';
 
 type InputFormType = {
   className: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
   click: boolean;
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-/* localStorage.getItem('searchField') ?? ''; */
 let search = '';
 
 const InputForm = (props: InputFormType) => {
@@ -22,8 +20,7 @@ const InputForm = (props: InputFormType) => {
   console.log(search);
   useEffect(() => {
     return () => {
-      dispatch(setSearch(search));
-      //localStorage.setItem('searchField', search);
+      dispatch(setSearch({ search }));
     };
   });
 
@@ -33,8 +30,7 @@ const InputForm = (props: InputFormType) => {
 
   const searchSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(setSearch(search));
-    props.setSearch(search);
+    dispatch(setSearch({ search }));
     props.setClick(!props.click);
   };
 

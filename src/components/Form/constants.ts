@@ -1,11 +1,9 @@
-import { ICheck } from '../../components/UI/CheckboxInput';
-import { IRadio } from '../../components/UI/RadioInput';
-
-export const OptsCheck: ICheck[] = [
-  { name: 'yes', id: '1', checked: false },
-  { name: 'white', id: '2', checked: false },
-  { name: 'another', id: '3', checked: false },
-];
+type IRadio = {
+  name: string;
+  id: string;
+  value: string;
+  defaultChecked: boolean;
+};
 
 export const OptsRadio: IRadio[] = [
   { name: 'sex', id: '1', value: 'boy', defaultChecked: false },
