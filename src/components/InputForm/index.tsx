@@ -1,5 +1,8 @@
 import { ChangeEventHandler, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
 import './index.css';
+import { setSearch } from '../../store/searchSlice';
 
 type InputFormType = {
   className: string;
@@ -8,16 +11,21 @@ type InputFormType = {
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-let search = localStorage.getItem('searchField') ?? '';
+/* localStorage.getItem('searchField') ?? ''; */
+let search = '';
 
 const InputForm = (props: InputFormType) => {
   const go = 'Go';
+  const dispatch = useAppDispatch();
 
+  search = useAppSelector((state) => state.search.search);
+  console.log(search);
   useEffect(() => {
     return () => {
-      localStorage.setItem('searchField', search);
+      dispatch(setSearch(search));
+      //localStorage.setItem('searchField', search);
     };
-  }, []);
+  });
 
   const searchChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     search = e.target.value;
@@ -25,7 +33,7 @@ const InputForm = (props: InputFormType) => {
 
   const searchSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    localStorage.setItem('searchField', search);
+    dispatch(setSearch(search));
     props.setSearch(search);
     props.setClick(!props.click);
   };
