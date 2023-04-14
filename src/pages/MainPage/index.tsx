@@ -1,14 +1,12 @@
 import CardsList from '../../components/CardsList';
 import InputForm from '../../components/InputForm';
-import { useState } from 'react';
 
 const MainPage = () => {
   const inputClass = 'search_form';
-  const [click, setClick] = useState(true);
 
   return (
     <div>
-      <InputForm className={inputClass} click={click} setClick={setClick} />
+      <InputForm className={inputClass} />
       <CardsList />
     </div>
   );

@@ -1,33 +1,42 @@
-import { describe, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { type Mock, describe, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import { store } from '../../store';
+import { setSearch } from '../../store/searchSlice';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 
 import InputForm from '.';
 
 describe('Search test', () => {
-  const testText = '123';
-  const onChangeInput = vi.fn();
-  const onClickBut = vi.fn();
+  vi.mock('../../store/hooks');
 
-  it('checked localstorage save', async () => {
-    const { unmount } = render(
-      <InputForm className={''} setSearch={() => onChangeInput} click={true} setClick={() => {}} />
-    );
-    let search = screen.getByPlaceholderText<HTMLInputElement>('input search');
-    await userEvent.type(search, testText);
-    unmount();
-    expect(localStorage.getItem('searchField')).toBe(testText);
-    render(<InputForm className={''} setSearch={onChangeInput} click={true} setClick={() => {}} />);
-    search = screen.getByPlaceholderText<HTMLInputElement>('input search');
-    expect(search.value).toBe(testText);
-  });
-  it('checked click button', async () => {
+  it('checked search value after submit', () => {
+    const mockDispatch = vi.fn();
+    (useAppSelector as Mock).mockReturnValue('');
+    (useAppDispatch as Mock).mockReturnValue(mockDispatch);
+
     render(
-      <InputForm className={''} setSearch={onChangeInput} click={true} setClick={onClickBut} />
+      <Provider store={store}>
+        <InputForm className={''} />
+      </Provider>
+    );
+
+    fireEvent.submit(screen.getByPlaceholderText<HTMLInputElement>('input search'));
+    expect(mockDispatch).toHaveBeenCalledWith(setSearch({ search: '' }));
+  });
+
+  it('checked click button', async () => {
+    const mockDispatch = vi.fn();
+    (useAppSelector as Mock).mockReturnValue('');
+    (useAppDispatch as Mock).mockReturnValue(mockDispatch);
+    render(
+      <Provider store={store}>
+        <InputForm className={''} />
+      </Provider>
     );
     const form = screen.getByRole('button');
     await userEvent.click(form);
-    expect(onChangeInput).toBeCalled();
-    expect(onClickBut).toBeCalled();
+    expect(mockDispatch).toHaveBeenCalledWith(setSearch({ search: '' }));
   });
 });

@@ -1,4 +1,6 @@
-export const testUsers = {
+import { Root } from '../../interfaces/interfaces';
+
+export const testUsers: Root = {
   users: [
     {
       id: 1,

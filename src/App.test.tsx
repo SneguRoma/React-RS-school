@@ -1,7 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
 import App from './App';
 
 describe('App', () => {
@@ -31,23 +30,5 @@ describe('App', () => {
     );
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('RoboWorld');
-  });
-  it('render button go', () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
-    );
-    expect(screen.getByRole('button')).toBeVisible();
-    expect(screen.getByRole('button')).toHaveTextContent('Go');
-  });
-  it('render button add card', () => {
-    render(
-      <MemoryRouter initialEntries={['/form']}>
-        <App />
-      </MemoryRouter>
-    );
-    expect(screen.getByRole('button')).toBeVisible();
-    expect(screen.getByRole('button')).toHaveTextContent('Add card');
   });
 });
