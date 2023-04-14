@@ -24,6 +24,7 @@ export default defineConfig({
         '**/index-cc771fc8.js',
         '**/vite-env.d.ts',
         '**/constants.ts',
+        '**/dataTestJson.ts',
       ],
     },
   },

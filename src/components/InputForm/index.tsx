@@ -6,8 +6,6 @@ import { setSearch } from '../../store/searchSlice';
 
 type InputFormType = {
   className: string;
-  click: boolean;
-  setClick: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 let search = '';

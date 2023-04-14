@@ -1,15 +1,16 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 import MainPage from './pages/MainPage';
 
 describe('Header', () => {
   it('render logo text', () => {
     render(
-      <MemoryRouter initialEntries={['/about']}>
+      <Provider store={store}>
         <MainPage />
-      </MemoryRouter>
+      </Provider>
     );
 
     expect(screen.getByPlaceholderText('input search')).toBeInTheDocument();
