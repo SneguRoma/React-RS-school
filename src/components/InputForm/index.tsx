@@ -17,7 +17,6 @@ const InputForm = (props: InputFormType) => {
   const dispatch = useAppDispatch();
 
   search = useAppSelector((state) => state.search.search);
-  console.log(search);
   useEffect(() => {
     return () => {
       dispatch(setSearch({ search }));
@@ -31,7 +30,6 @@ const InputForm = (props: InputFormType) => {
   const searchSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(setSearch({ search }));
-    props.setClick(!props.click);
   };
 
   return (

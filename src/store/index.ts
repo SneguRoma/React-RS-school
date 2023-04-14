@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchSliceReducer from './searchSlice';
 import formSliceReducer from './formSlice';
-import { roboApi } from './rodoApi';
+import { roboApi } from './roboApi';
 
 export const store = configureStore({
   reducer: {
