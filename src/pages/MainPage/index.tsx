@@ -9,7 +9,7 @@ const MainPage = () => {
   return (
     <div>
       <InputForm className={inputClass} click={click} setClick={setClick} />
-      <CardsList click={click} />
+      <CardsList />
     </div>
   );
 };

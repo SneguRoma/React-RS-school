@@ -1,50 +1,38 @@
-import { useState, useEffect } from 'react';
-import { searchUsers, getUserById, ICardFetch } from '../../api';
+import { useState } from 'react';
 import FetchCard from '../FetchCard';
-import { useSearchRobotsQuery } from '../../store/rodoApi';
+import { useSearchRobotsQuery, useGetRobotQuery } from '../../store/roboApi';
 import Card from '../Card';
 import { useAppSelector } from '../../store/hooks';
+
 import './index.css';
 
-type ICardList = {
-  click: boolean;
-};
-
-const CardsList = (props: ICardList) => {
-  const [cards, setcards] = useState<ICardFetch[]>([]);
-  const [err, setErr] = useState('');
+const CardsList = () => {
   const [activeCard, setActiveCard] = useState(false);
-  const [idCard, setIdCard] = useState<ICardFetch | null>(null);
-
   const searchField = useAppSelector((state) => state.search.search);
-  const { data, error, isLoading } = useSearchRobotsQuery(searchField);
-  console.log(data, error, isLoading);
-  //if (data?.users.length === 0) setErr('ohohoho Nothing found ');
+  const searchRobots = useSearchRobotsQuery(searchField);
+  const [robotId, setRobotId] = useState('1');
+  const robot = useGetRobotQuery(robotId);
 
-  /* useEffect(() => {
-    setcards([]);
-    setErr('');
-    searchUsers(searchField)
-      .then((cards) => {
-        setcards(cards);
-        if (cards.length === 0) setErr('ohohoho Nothing found ');
-        else setErr('');
-      })
-      .catch((err) => setErr(err.message));
-  }, [searchField, props.click]); */
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    getUserById(e.currentTarget.id).then((card) => setIdCard(card));
+    setRobotId(e.currentTarget.id);
     setActiveCard(true);
   };
 
-  if (isLoading) {
+  if (searchRobots.isLoading || searchRobots.isFetching) {
     return <h2>...Loading</h2>;
+  }
+
+  if (searchRobots.error) {
+    return <h2>...ohohoho something wrong</h2>;
+  }
+
+  if (searchRobots.data?.users.length === 0 && !searchRobots.error) {
+    return <h2>...ohohoho Nothing found</h2>;
   }
 
   return (
     <div className="cards">
-      {isLoading /*  && !error  */ ? <h2>...Loading</h2> : err ?? ''}
-      {data?.users.map((user) => (
+      {searchRobots.data?.users.map((user) => (
         <FetchCard
           id={user.id}
           key={user.id}
@@ -57,10 +45,11 @@ const CardsList = (props: ICardList) => {
       ))}
       {
         <Card
+          isLoading={robot.isLoading || robot.isFetching}
           activeCard={activeCard}
           setActiveCard={setActiveCard}
-          user={idCard}
-          setIdCard={setIdCard}
+          user={robot.data || null}
+          error={robot.error}
         />
       }
     </div>
