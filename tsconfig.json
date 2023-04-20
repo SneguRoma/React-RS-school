@@ -20,8 +20,9 @@
     //"baseUrl": "./src",
   },
   "include": [
+    "./src/**/*",
     ".eslintrc.cjs",
     "vite.config.ts",
-    "src"],
+    "src", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

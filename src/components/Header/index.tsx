@@ -7,12 +7,10 @@ interface IHeader {
 
 const Header = (props: IHeader) => {
   return (
-    <div className="header">
+    <header className="header">
       <h1 className="header_logo">{props.name}</h1>
-      <div className="header_menu">
-        <Nav />
-      </div>
-    </div>
+      <Nav />
+    </header>
   );
 };
 

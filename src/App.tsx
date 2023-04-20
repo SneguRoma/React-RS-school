@@ -13,15 +13,15 @@ const App = () => {
   const form = <FormPage className="form-page" />;
 
   return (
-    <div>
-      <Header name="RoboWorld" />
+    <>
+      {/* <Header name="RoboWorld" /> */}
       <Routes>
         <Route path="/" element={mainPage} />
         <Route path="/about" element={about} />
         <Route path="/form" element={form} />
         <Route path="*" element={error} />
       </Routes>
-    </div>
+    </>
   );
 };
 
