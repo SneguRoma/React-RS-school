@@ -1,7 +1,6 @@
 import React from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App';
-import Header from './components/Header';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -14,7 +13,6 @@ hydrateRoot(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Header name="RoboWorld" />
         <App />
       </BrowserRouter>
     </Provider>

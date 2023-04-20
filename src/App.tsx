@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <>
-      {/* <Header name="RoboWorld" /> */}
+      <Header name="RoboWorld" />
       <Routes>
         <Route path="/" element={mainPage} />
         <Route path="/about" element={about} />
