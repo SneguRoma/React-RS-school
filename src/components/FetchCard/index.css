@@ -1,8 +1,9 @@
-.card {
+.card_robo {
   background-color: beige;
   display: grid;
   grid-template-rows: 7fr 2fr 1fr 1fr;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .user_foto {

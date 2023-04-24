@@ -1,5 +1,6 @@
 import Nav from '../Nav';
 import './index.css';
+import '../../index.css';
 
 interface IHeader {
   name: string;
@@ -7,10 +8,12 @@ interface IHeader {
 
 const Header = (props: IHeader) => {
   return (
-    <header className="header">
+    <div className="header">
       <h1 className="header_logo">{props.name}</h1>
-      <Nav />
-    </header>
+      <div className="header_menu">
+        <Nav />
+      </div>
+    </div>
   );
 };
 

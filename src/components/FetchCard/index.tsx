@@ -11,7 +11,7 @@ type ICardFetchCard = {
 
 const FetchCard = (props: ICardFetchCard) => {
   return (
-    <div id={props.id + ''} className="card" onClick={props.onClick}>
+    <div id={props.id + ''} className="card_robo" onClick={props.onClick}>
       <img src={props.image} alt="foto" className="user_foto" />
       <h2 className="name_user">{`Name:  ${props.firstName}  ${props.lastName}`}</h2>
       <p>NickName: {props.username}</p>

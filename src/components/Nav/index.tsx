@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import './index.css';
 
@@ -21,7 +21,9 @@ const Nav = () => {
     setCurrentPage(!currentPage);
   };
 
-  const curPage = window.location.pathname.slice(1) || 'main';
+  const { pathname } = useLocation();
+
+  const curPage = pathname.slice(1) || 'main';
   const page = curPage === 'main' || curPage === 'about' || curPage === 'form' ? curPage : 'error';
 
   return (
