@@ -16,23 +16,23 @@ async function createServer() {
   });
   app.use(vite.middlewares);
 
-  app.use('^/$', async (request, response, next) => {
+  app.use('*', async (request, response, next) => {
     const url = request.originalUrl;
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
-      const html = template.split('<!--ssr-->');
-      const templStart = html[0];
-      const templEnd = html[1];
+      const html = template.split('<!--trulala-->');
+      const htmlStart = html[0];
+      const htmlEnd = html[1];
       const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
       const { pipe } = await render(url, {
         onShellReady() {
-          response.write(templStart);
+          response.write(htmlStart);
           pipe(response);
         },
         onAllReady() {
-          response.write(templEnd);
+          response.write(htmlEnd);
           response.end();
         },
       });

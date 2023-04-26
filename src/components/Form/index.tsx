@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../store/hooks';
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 import './index.css';
 import { addCard } from '../../store/formSlice';
+import { useState } from 'react';
 
 type IFormProps = {
   className: string;
@@ -25,8 +26,10 @@ const Form = (props: IFormProps) => {
   } = useForm({
     reValidateMode: 'onSubmit',
   });
+  const [subm, setSubmit] = useState(false);
 
   const print: SubmitHandler<FieldValues> = (e) => {
+    setSubmit(true);
     const newCard: ICardOfForm = {
       name: e.name ?? '',
       date: e.date.toDateString() ?? '',
@@ -35,12 +38,20 @@ const Form = (props: IFormProps) => {
       image: e.file && e.file[0] ? URL.createObjectURL(e.file[0]) : '',
     };
     dispatch(addCard({ ...newCard }));
-    alert('The form has been created');
+    //alert('The form has been created');
+    setTimeout(() => {
+      setSubmit(false);
+    }, 2000);
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(print)}>
+      {subm && (
+        <div className="subm_mess" data-testid="message">
+          <p className="subm_mess_text">Form has been saved</p>
+        </div>
+      )}
       <div className={props.className}>
         <div>
           <UnruledInput

@@ -17,12 +17,16 @@
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
+    "types": ["cypress"]
     //"baseUrl": "./src",
+  },
+  "ts-node": {
+    "esm": true,
   },
   "include": [
     "./src/**/*",
     ".eslintrc.cjs",
     "vite.config.ts",
-    "src", "server.ts"],
+    "src", "server.ts","cypress.config.ts", "**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
