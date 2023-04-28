@@ -15,7 +15,7 @@ const UnruledDate = (props: InputDateProps) => {
       </label>
       <input
         type="date"
-        id="date-input"
+        id={props.className}
         placeholder="input date"
         {...props.register}
         className={props.className}
