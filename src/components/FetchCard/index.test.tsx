@@ -2,9 +2,10 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import Card from '.';
-import USERS from '../../data';
 
-const user = USERS[0];
+import { testUsers } from '../CardsList/dataTestJson';
+
+const user = testUsers.users[0];
 const onClickBut = vi.fn();
 
 describe('Card', () => {

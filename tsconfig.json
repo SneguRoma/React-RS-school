@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["cypress"]
+    //"types": ["cypress"/* , "node", "jest", "@testing-library/jest-dom" */]
     //"baseUrl": "./src",
   },
   "ts-node": {

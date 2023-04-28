@@ -15,5 +15,6 @@ export default defineConfig({
       framework: 'react',
       bundler: 'vite',
     },
+    retries: 0,
   },
 });
