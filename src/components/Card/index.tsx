@@ -8,8 +8,8 @@ type ICard = {
   activeCard: boolean;
   setActiveCard: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | null;
-  error: FetchBaseQueryError | SerializedError | undefined;
-  isLoading: boolean;
+  error?: FetchBaseQueryError | SerializedError | undefined;
+  isLoading?: boolean;
 };
 
 const Card = (props: ICard) => {

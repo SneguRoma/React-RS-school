@@ -11,8 +11,11 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
+    'plugin:cypress/recommended'
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',

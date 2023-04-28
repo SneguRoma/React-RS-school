@@ -15,7 +15,7 @@ const UnruledInput = (props: InputTextProps) => {
       </label>
       <input
         type="text"
-        id="text-input"
+        id={props.className}
         placeholder="input name"
         {...props.register}
         className={props.className}
