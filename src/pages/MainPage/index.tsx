@@ -5,10 +5,10 @@ const MainPage = () => {
   const inputClass = 'search_form';
 
   return (
-    <div>
+    <>
       <InputForm className={inputClass} />
       <CardsList />
-    </div>
+    </>
   );
 };
 
