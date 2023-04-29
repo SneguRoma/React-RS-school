@@ -1,3 +1,11 @@
+@import './components/Form/index.css';
+@import './components/Card/index.css';
+@import './components/CardOfForm/index.css';
+@import './components/CardsList/index.css';
+@import './components/FetchCard/index.css';
+@import './components/Header/index.css';
+@import './components/InputForm/index.css';
+@import './components/Nav/index.css';
 #root {
   max-width: 1280px;
   margin: 0 auto;
